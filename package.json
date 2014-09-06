@@ -25,5 +25,10 @@
   "bugs": {
     "url": "https://github.com/Paca/xenapi/issues"
   },
-  "homepage": "https://github.com/Paca/xenapi"
+  "homepage": "https://github.com/Paca/xenapi",
+  "devDependencies": {
+    "mocha": "",
+    "should": "",
+    "xmlrpc": ""
+  }
 }
