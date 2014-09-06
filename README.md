@@ -1,4 +1,6 @@
-xenapi
+![Build status](https://travis-ci.org/Paca/xenapi.svg?branch=master "Build status")
+
+xenapi 
 ======
 
 This software are designed to be used with Citrix XenServer.
