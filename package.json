@@ -1,0 +1,29 @@
+{
+  "name": "xenapi",
+  "version": "0.0.0",
+  "description": "module to interact with Citrix XenServer api",
+  "main": "lib/main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Paca/xenapi.git"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "xen",
+    "xenserver",
+    "api"
+  ],
+  "author": "Paca (Pirlot Nicolas)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Paca/xenapi/issues"
+  },
+  "homepage": "https://github.com/Paca/xenapi"
+}
