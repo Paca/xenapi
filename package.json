@@ -1,6 +1,6 @@
 {
   "name": "xenapi",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "module to interact with Citrix XenServer api",
   "main": "lib/main.js",
   "directories": {
