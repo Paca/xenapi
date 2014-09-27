@@ -1,5 +1,67 @@
 #!/usr/bin/env node
+var async = require('async');
 var xenapi = require('../lib/main');
 
-var args = process.argv.slice(2);
-console.log(xenapi(args));
+
+
+var program = require('commander');
+
+program
+    .version('0.0.1')
+    .usage('[options] <command ...>')
+	.option('-U, --url [value]', 'The server url')
+	.option('-P, --port [value]', 'The server port')
+	.option('-u, --username [value]', 'The server username')
+	.option('-p, --pwd [value]', 'The server password')
+	
+function StartStopVm( statut, vmId, options){
+	vmId = vmId || null;
+	var url = program.url || 'localhost';
+	var port = program.port || 443;
+	var username = program.username || 'root';
+	var password = program.pwd || null;
+	if(password == null) 
+	{
+		console.log("ERROR : Argument password(-p) mandatory...");
+		process.exit(1);
+	}
+	if(vmId != null)
+	{
+		var Xen = new xenapi(url, port);
+		Xen.login(username, password);
+
+		async.series([
+			function(cb){
+				if(statut == 1)Xen.start(vmId, function(){ cb(null, 'Start'); }); 
+				if(statut == 0)Xen.stop(vmId, function(){ cb(null, 'Stop'); }); 
+			}
+			], function(err, results) {
+			if(err) return next(err);
+			console.log(JSON.stringify(results));
+			process.exit(0);
+		});	
+	}
+    
+  };
+ 
+function startVM( vmId, options){
+	StartStopVm(1, vmId, options);
+};
+
+function stopVM( vmId, options){
+	StartStopVm(0, vmId, options);
+};
+program
+  .command('start [vmId]')
+  .description('run start commands to start a VM specified with vmId (Guid)')
+  //.option("-p, --paused", "Start paused vm")
+  .action(startVM);
+
+program
+  .command('stop [vmId]')
+  .description('run stop commands to stop a VM specified with vmId (Guid)')
+  .option("-f, --force", "Stop with force shutdown the vm")
+  .action(stopVM);
+  
+program.parse(process.argv);
+if(!program.args.length) program.help();

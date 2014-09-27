@@ -29,6 +29,15 @@
   "devDependencies": {
     "mocha": "",
     "should": "",
-    "xmlrpc": ""
+    "xmlrpc": "",
+    "async": ""
+  },
+  "bin": {
+    "xenapi": "./bin/xenapi"
+  },
+  "dependencies": {
+    "xmlrpc": "",
+    "async": "",
+    "commander": "^2.3.0"
   }
 }
